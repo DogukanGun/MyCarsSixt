@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/dialog_box_button_background_cyan.xml" value="0.136" />
         <entry key="app/src/main/res/drawable/ic_xmark_solid.xml" value="0.136" />
         <entry key="app/src/main/res/layout/alert_dialog_layout.xml" value="0.13854166666666667" />
+        <entry key="app/src/main/res/layout/item_car.xml" value="0.25" />
       </map>
     </option>
   </component>
