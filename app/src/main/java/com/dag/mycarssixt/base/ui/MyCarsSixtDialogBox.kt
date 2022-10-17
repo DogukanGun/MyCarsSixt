@@ -11,8 +11,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MyCarsSixtDialogBox {
+class MyCarsSixtDialogBox @Inject constructor() {
 
     companion object {
 
