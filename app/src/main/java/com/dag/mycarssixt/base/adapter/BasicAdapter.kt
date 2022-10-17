@@ -10,7 +10,8 @@ open class BasicAdapter<T> protected constructor(
     private val itemLayout: Int,
     private val itemClickListener: ItemClickListener<T>?,
     private val selectionEnabled: Boolean,
-    private val list: MutableList<T>
+    private val list: MutableList<T>,
+    private val bindExtra: (viewHolder:BasicAdapter<T>.ViewHolder,position:Int)->Unit
 ) : RecyclerView.Adapter<BasicAdapter<T>.ViewHolder>() {
 
     private var selectedIndex = RecyclerView.NO_POSITION
@@ -28,6 +29,7 @@ open class BasicAdapter<T> protected constructor(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(list[position])
+        bindExtra(holder,position)
     }
 
 
@@ -75,7 +77,8 @@ open class BasicAdapter<T> protected constructor(
                 builder.itemLayoutId,
                 builder.itemClickListener,
                 builder.itemSelectionEnabled,
-                builder.list
+                builder.list,
+                builder.bindExtra
             )
         }
     }
