@@ -22,7 +22,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class CarsMapActivity: MyCarsSixtActivity<CarsMapVM,ActivityCarsmapBinding>() {
 
-    override fun getHomeViewModel(): CarsMapVM = carsMapVM
+    override fun getMyCarsSixtViewModel(): CarsMapVM = carsMapVM
 
     override fun getLayout(): Int = R.layout.activity_carsmap
 
