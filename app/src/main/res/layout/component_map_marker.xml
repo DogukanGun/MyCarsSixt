@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:padding="@dimen/padding_small">
+
+    <TextView
+        android:id="@+id/carNameTV"
+        style="@style/MyCarsSixtTitle.Black.XLarge.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="BMW-Mini"/>
+
+    <TextView
+        android:id="@+id/carDetailTV"
+        style="@style/MyCarsSixtTitle.Black.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="My Car" />
+</LinearLayout>
