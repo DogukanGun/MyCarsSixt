@@ -11,3 +11,5 @@ abstract class FlowUseCase<in P, R>(private val dispatcher: CoroutineDispatcher 
 
     fun observe(params: P): Flow<R> = buildUseCase(params).flowOn(dispatcher)
 }
+
+object None

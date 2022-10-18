@@ -35,5 +35,7 @@ ext {
     retrofit_version = '2.9.0'
     hilt_version = '2.43.2'
     nav_version = "2.5.2"
+    chucker_version = "3.5.2"
+    glide_version = '4.13.0'
     lottieVersion = '5.2.0'
 }

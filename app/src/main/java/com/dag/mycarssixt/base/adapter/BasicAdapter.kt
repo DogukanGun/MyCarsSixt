@@ -1,16 +1,26 @@
 package com.dag.mycarssixt.base.adapter
 
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.dag.mycarssixt.BR
+import com.dag.mycarssixt.R
+import com.dag.mycarssixt.base.ext.safeLet
+import com.dag.mycarssixt.databinding.ItemCarBinding
+import com.dag.mycarssixt.feature.cars.data.Car
 
 open class BasicAdapter<T> protected constructor(
     private val itemLayout: Int,
     private val itemClickListener: ItemClickListener<T>?,
     private val selectionEnabled: Boolean,
-    private val list: MutableList<T>
+    private val list: MutableList<T>,
+    private val imageEnable: Boolean
 ) : RecyclerView.Adapter<BasicAdapter<T>.ViewHolder>() {
 
     private var selectedIndex = RecyclerView.NO_POSITION
@@ -43,7 +53,7 @@ open class BasicAdapter<T> protected constructor(
         }
     }
 
-    inner class ViewHolder(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             if (itemClickListener != null || selectionEnabled) {
                 itemView.setOnClickListener { clicked() }
@@ -51,7 +61,21 @@ open class BasicAdapter<T> protected constructor(
         }
 
         fun bind(item: T) {
-            //binding.setVariable(BR.item, item)
+            binding.setVariable(BR.item, item)
+            if (imageEnable){
+                itemView.apply {
+                    val imageView = itemView.findViewById<ImageView>(R.id.adapterItemIV)
+                    (item as? Car)?.let {car->
+                        val options: RequestOptions = RequestOptions()
+                            .error(R.drawable.car_placeholder)
+                        Glide.with(imageView.context)
+                            .asBitmap()
+                            .load(car.carImageUrl)
+                            .apply(options)
+                        .into(imageView)
+                    }
+                }
+            }
             if (selectionEnabled) {
                 itemView.isSelected = adapterPosition == selectedIndex
             }
@@ -75,7 +99,8 @@ open class BasicAdapter<T> protected constructor(
                 builder.itemLayoutId,
                 builder.itemClickListener,
                 builder.itemSelectionEnabled,
-                builder.list
+                builder.list,
+                builder.imageEnable
             )
         }
     }

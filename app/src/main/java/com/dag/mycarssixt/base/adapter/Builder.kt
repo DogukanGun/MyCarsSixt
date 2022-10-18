@@ -6,6 +6,7 @@ class Builder<T> {
     var itemClickListener: ItemClickListener<T>? = null
     var itemSelectionEnabled: Boolean = false
     var list:MutableList<T> = mutableListOf()
+    var imageEnable: Boolean = false
 }
 
 /**

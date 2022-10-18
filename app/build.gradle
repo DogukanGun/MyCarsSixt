@@ -80,6 +80,13 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
     kapt "com.google.dagger:dagger-compiler:$hilt_version"
 
+    //chucker
+    debugImplementation "com.github.chuckerteam.chucker:library:$chucker_version"
+
     //lottie
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    implementation 'com.squareup.picasso:picasso:2.8'
 }
