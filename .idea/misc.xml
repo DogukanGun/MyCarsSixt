@@ -6,11 +6,14 @@
         <entry key="app/src/main/res/drawable/bg_item_car.xml" value="0.136" />
         <entry key="app/src/main/res/drawable/dialog_box_button_background_cyan.xml" value="0.136" />
         <entry key="app/src/main/res/drawable/dialog_box_button_background_orange.xml" value="0.136" />
+        <entry key="app/src/main/res/drawable/ic_baseline_map.xml" value="0.136" />
         <entry key="app/src/main/res/drawable/ic_car_placeholder.xml" value="0.136" />
         <entry key="app/src/main/res/drawable/ic_xmark_solid.xml" value="0.136" />
-        <entry key="app/src/main/res/layout/activity_cars.xml" value="0.21880493164062495" />
+        <entry key="app/src/main/res/layout/activity_cars.xml" value="0.6641494750976563" />
+        <entry key="app/src/main/res/layout/activity_carsmap.xml" value="0.26506024096385544" />
         <entry key="app/src/main/res/layout/activity_mycarssixt.xml" value="0.14822235107421883" />
         <entry key="app/src/main/res/layout/alert_dialog_layout.xml" value="0.13854166666666667" />
+        <entry key="app/src/main/res/layout/component_map_marker.xml" value="0.4514373779296875" />
         <entry key="app/src/main/res/layout/component_mycarssixttoolbar.xml" value="0.1" />
         <entry key="app/src/main/res/layout/component_process_dialog.xml" value="0.13854166666666667" />
         <entry key="app/src/main/res/layout/item_car.xml" value="0.5757110595703125" />

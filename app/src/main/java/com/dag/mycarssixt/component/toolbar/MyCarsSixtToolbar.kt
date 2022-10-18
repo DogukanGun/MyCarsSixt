@@ -10,7 +10,7 @@ import com.dag.mycarssixt.BR
 import com.dag.mycarssixt.R
 import com.dag.mycarssixt.databinding.ComponentMycarssixttoolbarBinding
 
-@BindingAdapter("ToslaToolbar:setComponentData")
+@BindingAdapter("MyCarsSixtToolbar:setComponentData")
 fun MyCarsSixtToolbar.setComponentData(viewData: MyCarsSixtToolbarData?) {
     viewModel.setData(viewData)
 }
