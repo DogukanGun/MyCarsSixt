@@ -4,6 +4,7 @@
     package="com.dag.mycarssixt">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCarsSixt"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${GOOGLE_MAPS_API_KEY}" />
         <activity
             android:name=".feature.cars.ui.CarsActivity"
             android:exported="true">
@@ -24,6 +28,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".feature.carsmap.ui.CarsMapActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

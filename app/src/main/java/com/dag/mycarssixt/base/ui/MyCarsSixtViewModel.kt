@@ -1,11 +1,13 @@
 package com.dag.mycarssixt.base.ui
 
+import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.viewModelScope
 import com.dag.mycarssixt.base.ext.onSuccess
 import com.dag.mycarssixt.base.ext.retryIf
+import com.dag.mycarssixt.component.toolbar.MyCarsSixtToolbarData
 import com.dag.mycarssixt.errorhandling.DefaultErrorHandler
 import com.dag.mycarssixt.errorhandling.ErrorHandler
 import com.dag.mycarssixt.network.BaseResult
@@ -16,8 +18,15 @@ import kotlinx.coroutines.flow.onEach
 
 abstract class MyCarsSixtViewModel: ViewModel() {
 
+    private val myCarsSixtToolbarViewDataObservable = ObservableField<MyCarsSixtToolbarData>()
     var viewState = MutableLiveData<MyCarsSixtViewState>()
     private val loading = MutableLiveData<Boolean>(false)
+
+    fun setMyCarsSixtToolbarViewData(myCarsSixtToolbarViewData: MyCarsSixtToolbarData?) {
+        myCarsSixtToolbarViewDataObservable.set(myCarsSixtToolbarViewData)
+    }
+
+    fun getMyCarsSixtToolbarViewDataObservable() = myCarsSixtToolbarViewDataObservable
 
     protected fun <T> Flow<BaseResult<T>>.publishLoading() = onEach {
         updateLoading(it is BaseResult.Loading)

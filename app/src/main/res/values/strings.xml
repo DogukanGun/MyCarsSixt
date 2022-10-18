@@ -6,4 +6,7 @@
     <string name="repeatable_dialog_error_message">Let\'s try again.</string>
 
     <string name="dialog_positive_button">Okay</string>
+    <string name="cars_floatingbutton_desc">goToMap</string>
+
+    <string name="carsmap_title">Cars on Map</string>
 </resources>
