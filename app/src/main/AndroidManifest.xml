@@ -30,6 +30,8 @@
         </activity>
         <activity android:name=".feature.carsmap.ui.CarsMapActivity"
             android:exported="false"/>
+        <activity android:name=".feature.cardetail.ui.CarDetailActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

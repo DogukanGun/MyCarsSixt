@@ -15,7 +15,7 @@ abstract class MyCarsSixtActivity<VM : MyCarsSixtViewModel, VB : ViewDataBinding
     lateinit var binding: VB
     lateinit var viewModel: VM
 
-    abstract fun getHomeViewModel(): VM
+    abstract fun getMyCarsSixtViewModel(): VM
     abstract fun getLayout(): Int
 
     @Inject
@@ -26,7 +26,7 @@ abstract class MyCarsSixtActivity<VM : MyCarsSixtViewModel, VB : ViewDataBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = getHomeViewModel()
+        viewModel = getMyCarsSixtViewModel()
         binding = DataBindingUtil.setContentView(this, getLayout())
         binding.setVariable(BR.viewModel, viewModel)
         if (!viewModel.viewState.hasActiveObservers()) {

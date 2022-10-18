@@ -13,6 +13,7 @@ import com.dag.mycarssixt.base.ui.MyCarsSixtActivity
 import com.dag.mycarssixt.base.ui.MyCarsSixtViewState
 import com.dag.mycarssixt.databinding.ActivityCarsBinding
 import com.dag.mycarssixt.databinding.ItemCarBinding
+import com.dag.mycarssixt.feature.cardetail.ui.CarDetailActivity
 import com.dag.mycarssixt.feature.cars.data.Car
 import com.dag.mycarssixt.feature.carsmap.ui.CarsMapActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,12 +22,14 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class CarsActivity: MyCarsSixtActivity<CarsVM,ActivityCarsBinding>() {
 
-    override fun getHomeViewModel(): CarsVM = carsVM
+    override fun getMyCarsSixtViewModel(): CarsVM = carsVM
 
     override fun getLayout(): Int = R.layout.activity_cars
 
     @Inject
     lateinit var carsVM: CarsVM
+
+    private var carsList = emptyList<Car>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +41,7 @@ class CarsActivity: MyCarsSixtActivity<CarsVM,ActivityCarsBinding>() {
         super.handleState(viewState)
         when(viewState){
             is CarsState.Cars ->{
+                carsList = viewState.carsList
                 createAdapter(viewState.carsList)
             }
         }
@@ -55,7 +59,10 @@ class CarsActivity: MyCarsSixtActivity<CarsVM,ActivityCarsBinding>() {
     }
 
     private val carRecyclerViewItemClickListener = ItemClickListener<Car>{ position, item ->
-
+        val car = carsList[position]
+        val intent = Intent(this,CarDetailActivity::class.java)
+        intent.putExtra(CarDetailActivity.carKey,car)
+        openActivity(intent)
     }
 
     private val carsFabButtonClickListener = View.OnClickListener {
