@@ -6,10 +6,9 @@ import com.dag.mycarssixt.network.SixtService
 import javax.inject.Inject
 
 class CarRepository @Inject constructor(
-    //private val sixtService: SixtService
-    private val sixtLocalService: SixtLocalService
+    private val sixtService: SixtService,
 ) : BaseRepository() {
     fun getCars() = fetch {
-        sixtLocalService.getCars()
+        sixtService.getCars()
     }
 }

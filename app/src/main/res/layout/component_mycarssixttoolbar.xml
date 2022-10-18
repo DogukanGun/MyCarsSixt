@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.dag.mycarssixt.component.toolbar.MyCarsSixtToolbarVM" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:background="@color/light_blue_600">
+
+        <ImageButton
+            android:id="@+id/imageLeftIB"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="@dimen/margin_small"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@{viewModel.leftImageResObservable}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visible="@{viewModel.leftImageVisibilityObservable}"
+            tools:src="@drawable/ic_baseline_back"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/fullyCenteredTitleTV"
+            style="@style/MyCarsSixtTitle.White.Large.Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginEnd="44dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textOrRes="@{viewModel.fullyCenteredTitleObservable}"
+            tools:text="@string/app_name" />
+
+        <ImageButton
+            android:id="@+id/imageRightIB"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@{viewModel.rightImageResObservable}"
+            app:visible="@{viewModel.rightImageVisibilityObservable}"
+            android:layout_marginEnd="@dimen/margin_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_baseline_person"
+            app:tint="@color/white"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
