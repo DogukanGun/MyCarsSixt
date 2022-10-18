@@ -1,21 +1,22 @@
 package com.dag.mycarssixt.feature.carsmap.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.dag.mycarssixt.R
+import com.dag.mycarssixt.base.ext.openActivity
 import com.dag.mycarssixt.base.ext.vectorToBitmap
 import com.dag.mycarssixt.base.ui.MyCarsSixtActivity
 import com.dag.mycarssixt.base.ui.MyCarsSixtViewState
 import com.dag.mycarssixt.databinding.ActivityCarsmapBinding
+import com.dag.mycarssixt.feature.cardetail.ui.CarDetailActivity
+import com.dag.mycarssixt.feature.cars.data.Car
 import com.dag.mycarssixt.feature.carsmap.data.CarMarker
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptor
-import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -29,7 +30,8 @@ class CarsMapActivity: MyCarsSixtActivity<CarsMapVM,ActivityCarsmapBinding>() {
     @Inject
     lateinit var carsMapVM: CarsMapVM
 
-    var mapFragment: SupportMapFragment? = null
+    private var mapFragment: SupportMapFragment? = null
+    private var carsList:List<Car>? = null
     private val carIcon: BitmapDescriptor by lazy {
         val color = ContextCompat.getColor(this, R.color.light_blue_400)
         vectorToBitmap(this, R.drawable.ic_baseline_car, color)
@@ -48,10 +50,24 @@ class CarsMapActivity: MyCarsSixtActivity<CarsMapVM,ActivityCarsmapBinding>() {
         super.handleState(viewState)
         when(viewState){
             is CarsMapViewState.Cars ->{
-                createMapMarkers(viewState.carsMarkerList)
+                carsList = viewState.carsMarkerList
+                createMapMarkers(getCarMarkersList(viewState.carsMarkerList))
             }
         }
     }
+
+    private fun getCarMarkersList(carsList:List<Car>):List<CarMarker> =
+        carsList.map { car->
+            CarMarker(
+                id = car.id,
+                group = car.group,
+                series = car.series,
+                latitude = car.latitude,
+                longitude = car.longitude,
+                licensePlate = car.licensePlate
+            )
+        }
+
 
     private fun createMapMarkers(places:List<CarMarker>){
         mapFragment = supportFragmentManager.findFragmentById(R.id.mapFragment) as? SupportMapFragment
@@ -60,6 +76,17 @@ class CarsMapActivity: MyCarsSixtActivity<CarsMapVM,ActivityCarsmapBinding>() {
                 val bounds = LatLngBounds.builder()
                 places.forEach { bounds.include(it.latLong) }
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 20))
+            }
+            googleMap.setOnMarkerClickListener {
+                val carFromMapper = carsList?.firstOrNull { carMarker ->
+                    carMarker.id == it.tag
+                }
+                carFromMapper?.let { car->
+                    val intent = Intent(this, CarDetailActivity::class.java)
+                    intent.putExtra(CarDetailActivity.carKey,car)
+                    openActivity(intent)
+                }
+                true
             }
             googleMap.setInfoWindowAdapter(CarsMapMapperWindowAdapter(this))
             addMarkers(places,googleMap)
@@ -74,7 +101,7 @@ class CarsMapActivity: MyCarsSixtActivity<CarsMapVM,ActivityCarsmapBinding>() {
                     .position(place.latLong)
                     .icon(carIcon)
             )
-            marker?.tag = place
+            marker?.tag = place.id
         }
     }
 

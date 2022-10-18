@@ -26,20 +26,11 @@ class CarsMapVM @Inject constructor(
         getCarsMapperUseCase.observe(None)
             .publishLoading()
             .subscribe {
-                val carMarkersList = it?.map { car->
-                    CarMarker(
-                        group = car.group,
-                        series = car.series,
-                        latitude = car.latitude,
-                        longitude = car.longitude,
-                        licensePlate = car.licensePlate
+                it?.let { carsList->
+                    viewState.postValue(
+                        CarsMapViewState.Cars(carsList)
                     )
-                } ?: emptyList()
-                viewState.postValue(
-                    CarsMapViewState.Cars(
-                        carMarkersList
-                    )
-                )
+                }
             }
     }
 }

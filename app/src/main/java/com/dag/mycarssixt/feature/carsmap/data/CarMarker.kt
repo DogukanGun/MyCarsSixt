@@ -3,6 +3,7 @@ package com.dag.mycarssixt.feature.carsmap.data
 import com.google.android.gms.maps.model.LatLng
 
 data class CarMarker(
+    val id: String,
     val group: String,
     val series: String,
     val latitude: Double,
