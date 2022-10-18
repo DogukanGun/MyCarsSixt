@@ -4,8 +4,8 @@ class ListAdapter<T : ListItem> private constructor(
     itemClickListener: ItemClickListener<T>?,
     selectionEnabled: Boolean,
     private val list: MutableList<T>,
-    bindExtra: (viewHolder:BasicAdapter<T>.ViewHolder,position:Int)->Unit
-) : BasicAdapter<T>(0, itemClickListener, selectionEnabled,list,bindExtra) {
+    imageEnable: Boolean
+) : BasicAdapter<T>(0, itemClickListener, selectionEnabled,list,imageEnable) {
 
     override fun getItemViewType(position: Int): Int {
         return list[position].layoutId
@@ -20,7 +20,7 @@ class ListAdapter<T : ListItem> private constructor(
                 builder.itemClickListener,
                 builder.itemSelectionEnabled,
                 builder.list,
-                builder.bindExtra
+                builder.imageEnable
             )
         }
     }

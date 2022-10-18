@@ -3,6 +3,7 @@ package com.dag.mycarssixt.di
 import android.app.Application
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.dag.mycarssixt.base.ui.MyCarsSixtyApplication
+import com.dag.mycarssixt.network.BaseNetworkLogger
 import com.dag.mycarssixt.network.SixtService
 import com.dag.mycarssixt.network.calladapter.NetworkResponseAdapterFactory
 import com.google.gson.Gson
@@ -33,23 +34,15 @@ object NetworkModule {
     fun provideBaseOkHttpClientBuilder(
         cache: Cache,
         chuckerInterceptor: ChuckerInterceptor,
-    ): OkHttpClient.Builder {
+        baseNetworkLogger: BaseNetworkLogger,
+        ): OkHttpClient {
         return OkHttpClient.Builder()
             .cache(cache)
+            .addNetworkInterceptor(baseNetworkLogger)
             .addInterceptor(chuckerInterceptor)
             .connectTimeout(60000L, TimeUnit.MILLISECONDS)
             .readTimeout(60000L, TimeUnit.MILLISECONDS)
             .writeTimeout(60000L, TimeUnit.MILLISECONDS)
-    }
-
-    @Provides
-    @Singleton
-    fun provideBaseOkHttpClient(
-        okHttpClientBuilder: OkHttpClient.Builder,
-        headerInterceptor: Interceptor
-    ): OkHttpClient {
-        return okHttpClientBuilder
-            .addInterceptor(headerInterceptor)
             .build()
     }
 
@@ -59,13 +52,13 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideHomerentServiceAuthenticated(
+    fun provideSixtService(
         retrofit: Retrofit
     ): SixtService = retrofit.create(SixtService::class.java)
 
     @Provides
     @Singleton
-    fun provideRetrofitAuthenticated(
+    fun provideRetrofit(
         baseOkHttpClient: Lazy<OkHttpClient>,
         gson: Gson
     ): Retrofit {

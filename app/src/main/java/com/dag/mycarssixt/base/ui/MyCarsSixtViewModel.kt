@@ -50,7 +50,7 @@ abstract class MyCarsSixtViewModel: ViewModel() {
     ) = handleErrorWith(errorHandler)
         .subscribe()
 
-    private fun <T> Flow<BaseResult<T>>.subscribe(
+    protected fun <T> Flow<BaseResult<T>>.subscribe(
         errorHandler: ErrorHandler? = DefaultErrorHandler(),
         onSuccess: (T?) -> Unit
     ) = handleErrorWith(errorHandler)

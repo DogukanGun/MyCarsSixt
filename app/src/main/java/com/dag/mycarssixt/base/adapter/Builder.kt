@@ -6,7 +6,7 @@ class Builder<T> {
     var itemClickListener: ItemClickListener<T>? = null
     var itemSelectionEnabled: Boolean = false
     var list:MutableList<T> = mutableListOf()
-    var bindExtra: (viewHolder:BasicAdapter<T>.ViewHolder,position:Int)->Unit = {viewHolder, position ->  }
+    var imageEnable: Boolean = false
 }
 
 /**

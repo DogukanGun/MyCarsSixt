@@ -83,4 +83,10 @@ dependencies {
     //chucker
     debugImplementation "com.github.chuckerteam.chucker:library:$chucker_version"
 
+    //lottie
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    implementation 'com.squareup.picasso:picasso:2.8'
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyCarsSixtTitle" parent="Widget.AppCompat.TextView" />
+
+    <style name="MyCarsSixtTitle.Black">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="MyCarsSixtTitle.Black.Small">
+        <item name="android:textSize">@dimen/font_size_small</item>
+    </style>
+
+    <style name="MyCarsSixtTitle.Black.Small.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MyCarsSixtTitle.Black.Standard">
+        <item name="android:textSize">@dimen/font_size_standard</item>
+    </style>
+
+    <style name="MyCarsSixtTitle.Black.Standard.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MyCarsSixtTitle.Black.Large">
+        <item name="android:textSize">@dimen/font_size_large</item>
+    </style>
+
+    <style name="MyCarsSixtTitle.Black.Large.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MyCarsSixtTitle.Black.XLarge">
+        <item name="android:textSize">@dimen/font_size_x_large</item>
+    </style>
+
+    <style name="MyCarsSixtTitle.Black.XLarge.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MyCarsSixtTitle.Black.XXLarge">
+        <item name="android:textSize">@dimen/font_size_xx_large</item>
+    </style>
+
+    <style name="MyCarsSixtTitle.Black.XXLarge.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

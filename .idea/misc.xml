@@ -8,8 +8,10 @@
         <entry key="app/src/main/res/drawable/dialog_box_button_background_orange.xml" value="0.136" />
         <entry key="app/src/main/res/drawable/ic_car_placeholder.xml" value="0.136" />
         <entry key="app/src/main/res/drawable/ic_xmark_solid.xml" value="0.136" />
+        <entry key="app/src/main/res/layout/activity_cars.xml" value="0.1375" />
         <entry key="app/src/main/res/layout/alert_dialog_layout.xml" value="0.13854166666666667" />
-        <entry key="app/src/main/res/layout/item_car.xml" value="0.46099090576171875" />
+        <entry key="app/src/main/res/layout/component_process_dialog.xml" value="0.13854166666666667" />
+        <entry key="app/src/main/res/layout/item_car.xml" value="0.5757110595703125" />
       </map>
     </option>
   </component>

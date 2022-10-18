@@ -20,7 +20,7 @@ data class Car (
     val latitude: Double,
     val longitude: Double,
     val innerCleanliness: String,
-    val carImageURL: String
+    val carImageUrl: String
 ): Parcelable{
     val fuelTypeText: String
         get() {
