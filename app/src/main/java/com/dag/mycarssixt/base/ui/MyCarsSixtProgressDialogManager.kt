@@ -14,7 +14,7 @@ class MyCarsSixtProgressDialogManager @Inject constructor() {
     fun showErrorDialog(context: Context) {
         progressDialog = MyCarsSixtProcessDialog(context, ERROR)
         progressDialog?.show()
-        progressDialog?.listener = object : MyCarsSixtProcessDialog.HomerentAnimationListener {
+        progressDialog?.listener = object : MyCarsSixtProcessDialog.MyCarsSixtAnimationListener {
             override fun finishAnimation() {
                 progressDialog?.dismiss()
             }
@@ -24,7 +24,7 @@ class MyCarsSixtProgressDialogManager @Inject constructor() {
     fun showUploadDialog(context: Context) {
         progressDialog = MyCarsSixtProcessDialog(context, UPLOAD)
         progressDialog?.show()
-        progressDialog?.listener = object : MyCarsSixtProcessDialog.HomerentAnimationListener {
+        progressDialog?.listener = object : MyCarsSixtProcessDialog.MyCarsSixtAnimationListener {
             override fun finishAnimation() {
                 progressDialog?.dismiss()
             }

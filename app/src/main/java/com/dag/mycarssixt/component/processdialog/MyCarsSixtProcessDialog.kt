@@ -12,7 +12,7 @@ class MyCarsSixtProcessDialog : Dialog {
 
     private lateinit var animationType: AnimationType
 
-    var listener: HomerentAnimationListener? = null
+    var listener: MyCarsSixtAnimationListener? = null
 
     init {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -61,7 +61,7 @@ class MyCarsSixtProcessDialog : Dialog {
 
     }
 
-    interface HomerentAnimationListener {
+    interface MyCarsSixtAnimationListener {
         fun finishAnimation()
     }
 }
