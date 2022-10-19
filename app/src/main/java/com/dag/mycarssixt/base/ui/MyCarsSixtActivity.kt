@@ -47,7 +47,7 @@ abstract class MyCarsSixtActivity<VM : MyCarsSixtViewModel, VB : ViewDataBinding
         }
     }
 
-    private fun handleLoadingState(isLoading: Boolean) {
+    fun handleLoadingState(isLoading: Boolean) {
         if (isLoading) {
             myCarsSixtProgressDialogManager.showLoadingDialog(this)
         } else {
