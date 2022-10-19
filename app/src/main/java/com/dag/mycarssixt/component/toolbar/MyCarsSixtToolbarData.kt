@@ -7,7 +7,7 @@ import com.dag.mycarssixt.R
 
 data class MyCarsSixtToolbarData(
     @DrawableRes val leftImageRes: Int? = null,
-    @DrawableRes val rightImageRes: Int? = R.drawable.ic_baseline_person,
-    val fullyCenteredTitle: String? = null,
+    @DrawableRes var rightImageRes: Int? = R.drawable.ic_baseline_person,
+    var fullyCenteredTitle: String? = null,
     @StringRes val fullyCenteredTitleRes: Int? = R.string.app_name,
 )

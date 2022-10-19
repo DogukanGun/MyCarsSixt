@@ -1,15 +1,20 @@
 package com.dag.mycarssixt.feature.cardetail.ui
 
+import android.content.Context
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dag.mycarssixt.R
 import com.dag.mycarssixt.base.adapter.basicAdapter
 import com.dag.mycarssixt.base.ui.MyCarsSixtActivity
+import com.dag.mycarssixt.base.ui.MyCarsSixtViewState
 import com.dag.mycarssixt.databinding.ActivityCardetailBinding
 import com.dag.mycarssixt.feature.cardetail.data.KeyValuePair
 import com.dag.mycarssixt.feature.cars.data.Car
+import com.dag.mycarssixt.network.localrepo.FavCar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlin.reflect.full.memberProperties
@@ -28,10 +33,41 @@ class CarDetailActivity: MyCarsSixtActivity<CarDetailVM,ActivityCardetailBinding
         super.onCreate(savedInstanceState)
         intent.getParcelableExtra<Car>(carKey)?.let {
             viewModel.changeToolbar(it.name.uppercase().plus("\'s Car"))
+            viewModel.getCarLikeStatus(it.id)
             createUI(it)
         }
-        binding.toolbar.onLeftImageClick = {
-            finish()
+        binding.toolbar.apply {
+            onRightImageClick = {
+                like()
+            }
+            onLeftImageClick = {
+                finish()
+            }
+        }
+    }
+
+    override fun handleState(viewState: MyCarsSixtViewState) {
+        super.handleState(viewState)
+        when(viewState){
+            is CarDetailState.CarLikeStatus->{
+              setCarStatus(viewState.favCar)
+            }
+        }
+    }
+
+    private fun like(){
+        viewModel.like()
+    }
+
+    private fun setCarStatus(favCar: FavCar){
+        if (favCar.liked){
+            ContextCompat.getDrawable(this,R.drawable.ic_baseline_liked)?.let {
+                binding.toolbar.setRightImageImage(it)
+            }
+        }else{
+            ContextCompat.getDrawable(this,R.drawable.ic_baseline_not_liked)?.let {
+                binding.toolbar.setRightImageImage(it)
+            }
         }
     }
 

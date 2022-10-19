@@ -1,6 +1,8 @@
 package com.dag.mycarssixt.component.toolbar
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -69,5 +71,13 @@ class MyCarsSixtToolbar: ConstraintLayout {
         binding.imageLeftIB.setOnClickListener { onLeftImageClick?.invoke() }
         binding.imageRightIB.setOnClickListener { onRightImageClick?.invoke() }
         binding.setVariable(BR.viewModel,viewModel)
+    }
+
+    fun setRightImageImage(drawable: Drawable){
+        binding.imageRightIB.setImageDrawable(drawable)
+    }
+
+    fun setLeftImageImage(drawable: Drawable){
+        binding.imageRightIB.setImageDrawable(drawable)
     }
 }
