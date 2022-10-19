@@ -4,6 +4,7 @@
     package="com.dag.mycarssixt">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.PERM_I_NEED"/>
 
     <application
         android:allowBackup="true"
@@ -21,6 +22,7 @@
             android:value="${GOOGLE_MAPS_API_KEY}" />
         <activity
             android:name=".feature.cars.ui.CarsActivity"
+            android:process=":cars"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
