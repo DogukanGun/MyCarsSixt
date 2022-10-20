@@ -85,6 +85,7 @@ dependencies {
 
     //chucker
     debugImplementation "com.github.chuckerteam.chucker:library:$chucker_version"
+    releaseImplementation "com.github.chuckerteam.chucker:library:$chucker_version"
 
     //lottie
     implementation "com.airbnb.android:lottie:$lottieVersion"
