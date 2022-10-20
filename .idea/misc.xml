@@ -24,6 +24,8 @@
         <entry key="app/src/main/res/layout/item_cardetail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_profile_favcar.xml" value="0.3470723470052083" />
         <entry key="app/src/main/res/layout/item_profile_user.xml" value="0.2911458333333333" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.136" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.136" />
       </map>
     </option>
   </component>
