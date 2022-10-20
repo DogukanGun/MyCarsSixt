@@ -10,6 +10,6 @@ class ProfileRepository @Inject constructor(
     private val favCarDao: FavCarDao
 ): BaseRepository(){
     fun getAllCars() = fetch {
-        BaseResult.Success(favCarDao.getAllCars())
+        BaseResult.Success(favCarDao.getAllCarsLiked())
     }
 }

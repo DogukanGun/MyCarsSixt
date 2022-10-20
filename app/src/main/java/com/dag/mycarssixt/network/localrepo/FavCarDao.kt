@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface FavCarDao {
 
-    @Query("SELECT * from FavCar")
-    fun getAllCars(): List<FavCar>
+    @Query("SELECT * from FavCar WHERE liked = 1")
+    fun getAllCarsLiked(): List<FavCar>
 
     @Query("SELECT * from FavCar WHERE carId = :carId")
     fun getItem(carId: String): FavCar
