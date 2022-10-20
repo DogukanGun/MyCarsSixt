@@ -77,7 +77,7 @@ class CarsMapActivity: MyCarsSixtActivity<CarsMapVM,ActivityCarsmapBinding>() {
                 places.forEach { bounds.include(it.latLong) }
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 20))
             }
-            googleMap.setOnMarkerClickListener {
+            googleMap.setOnInfoWindowClickListener {
                 val carFromMapper = carsList?.firstOrNull { carMarker ->
                     carMarker.id == it.tag
                 }
@@ -86,7 +86,6 @@ class CarsMapActivity: MyCarsSixtActivity<CarsMapVM,ActivityCarsmapBinding>() {
                     intent.putExtra(CarDetailActivity.carKey,car)
                     openActivity(intent)
                 }
-                true
             }
             googleMap.setInfoWindowAdapter(CarsMapMapperWindowAdapter(this))
             addMarkers(places,googleMap)
