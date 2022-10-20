@@ -16,6 +16,7 @@ import com.dag.mycarssixt.databinding.ItemCarBinding
 import com.dag.mycarssixt.feature.cardetail.ui.CarDetailActivity
 import com.dag.mycarssixt.feature.cars.data.Car
 import com.dag.mycarssixt.feature.carsmap.ui.CarsMapActivity
+import com.dag.mycarssixt.feature.profile.activity.ProfileActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -35,6 +36,9 @@ class CarsActivity: MyCarsSixtActivity<CarsVM,ActivityCarsBinding>() {
         super.onCreate(savedInstanceState)
         carsVM.getCars()
         binding.gotoMapFAB.setOnClickListener(carsFabButtonClickListener)
+        binding.toolbar.onRightImageClick = {
+            openActivity(Intent(this,ProfileActivity::class.java))
+        }
     }
 
     override fun handleState(viewState: MyCarsSixtViewState) {

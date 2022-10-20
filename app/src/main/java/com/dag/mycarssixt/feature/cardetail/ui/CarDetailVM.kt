@@ -16,39 +16,34 @@ class CarDetailVM @Inject constructor(
     private val dislikeCarUseCase: DislikeCarUseCase,
     private val getFavCarUseCase: GetFavCarUseCase,
     private val likeFavCarUseCase: LikeCarUseCase
-): MyCarsSixtViewModel() {
+) : MyCarsSixtViewModel() {
 
     private var toolbarData = MyCarsSixtToolbarData(
         leftImageRes = R.drawable.ic_baseline_back,
         fullyCenteredTitle = "",
         rightImageRes = R.drawable.ic_baseline_not_liked,
     )
-    private var _favCar:FavCar? = null
+    private var _favCar: FavCar? = null
     private var carNotExist = false
 
-    fun getCarLikeStatus(carId:String){
-        getFavCarUseCase.observe(GetFavCarUseCase.GetFavCarUseCaseParams(carId))
+    fun getCarLikeStatus(favCar: FavCar) {
+        getFavCarUseCase.observe(GetFavCarUseCase.GetFavCarUseCaseParams(favCar.carId))
             .publishLoading()
-            .subscribe{
-                if (it!=null){
+            .subscribe {
+                if (it != null) {
                     _favCar = it
                     viewState.postValue(
                         CarDetailState.CarLikeStatus(it)
                     )
-                }else{
+                } else {
                     carNotExist = true
-                    FavCar(
-                        carId = carId,
-                        liked = false
-                    ).also {
-                        _favCar = it
-                        viewState.postValue(CarDetailState.CarLikeStatus(it))
-                    }
+                    _favCar = favCar
+                    viewState.postValue(CarDetailState.CarLikeStatus(favCar))
                 }
             }
     }
 
-    private fun addFavCar(){
+    private fun addFavCar() {
         addFavCarUseCase.observe(AddFavCarUseCase.AddFavCarUseCaseParams(_favCar!!))
             .publishLoading()
             .subscribe {
@@ -56,21 +51,21 @@ class CarDetailVM @Inject constructor(
             }
     }
 
-    fun changeToolbar(title:String) {
+    fun changeToolbar(title: String) {
         toolbarData.fullyCenteredTitle = title
         setMyCarsSixtToolbarViewData(toolbarData)
     }
 
-    fun like(){
+    fun like() {
         _favCar?.let {
-            if (it.liked){
+            if (it.liked) {
                 dislikeCarUseCase.observe(DislikeCarUseCase.DislikeCarUseCaseParams(it.carId))
                 it.liked = false
-            }else{
+            } else {
                 it.liked = true
-                if (carNotExist){
+                if (carNotExist) {
                     addFavCar()
-                }else{
+                } else {
                     likeFavCarUseCase.observe(LikeCarUseCase.LikeCarUseCaseParams(it.carId))
                 }
             }

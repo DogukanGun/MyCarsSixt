@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyCarsSixt</string>
+    <string name="network_error_message_title">Netzwerkfehler</string>
+    <string name="network_error_message_text">Bitte versuche es erneut.</string>
+    <string name="repeatable_dialog_error_message">Lass es uns erneut versuchen.</string>
+    <string name="dialog_positive_button">Okay</string>
+    <string name="cars_floatingbutton_desc">goToMap</string>
+    <string name="carsmap_title">Autos auf Karte</string>
+    <string name="profile_page_title">Dein Profil</string>
+</resources>

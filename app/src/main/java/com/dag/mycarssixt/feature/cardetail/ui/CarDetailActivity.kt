@@ -33,7 +33,11 @@ class CarDetailActivity: MyCarsSixtActivity<CarDetailVM,ActivityCardetailBinding
         super.onCreate(savedInstanceState)
         intent.getParcelableExtra<Car>(carKey)?.let {
             viewModel.changeToolbar(it.name.uppercase().plus("\'s Car"))
-            viewModel.getCarLikeStatus(it.id)
+            viewModel.getCarLikeStatus(FavCar(
+                carModel = it.modelName,
+                carId = it.id,
+                liked = false
+            ))
             createUI(it)
         }
         binding.toolbar.apply {
