@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import com.dag.mycarssixt.BR
+import com.dag.mycarssixt.R
 import com.dag.mycarssixt.network.dialogbox.ModelDialog
 import com.dag.mycarssixt.network.dialogbox.ModelDialogHandler
 import javax.inject.Inject
@@ -17,6 +19,7 @@ abstract class MyCarsSixtActivity<VM : MyCarsSixtViewModel, VB : ViewDataBinding
 
     abstract fun getMyCarsSixtViewModel(): VM
     abstract fun getLayout(): Int
+    private fun getContainerId() = R.id.container
 
     @Inject
     lateinit var modelDialogHandler: ModelDialogHandler
@@ -52,6 +55,21 @@ abstract class MyCarsSixtActivity<VM : MyCarsSixtViewModel, VB : ViewDataBinding
             myCarsSixtProgressDialogManager.showLoadingDialog(this)
         } else {
             myCarsSixtProgressDialogManager.stopDialog()
+        }
+    }
+
+    fun addFragment(fragment:MyCarsSixtFragment<*,*>){
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.replace(getContainerId(),fragment,null)
+        fragmentTransaction.commitAllowingStateLoss()
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.fragments.last() is MyCarsSixtFragment<*,*>) {
+            finish()
+        } else {
+            super.onBackPressed()
         }
     }
 }

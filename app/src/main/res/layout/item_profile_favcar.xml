@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="item"
+            type="com.dag.mycarssixt.feature.profile.fragment.ui.ProfileRowItem" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_small">
+
+        <ImageView
+            android:id="@+id/carImageIV"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/padding_small"
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:srcCompat="@drawable/ic_baseline_car" />
+
+        <TextView
+            android:id="@+id/carModelTV"
+            style="@style/MyCarsSixtTitle.Black.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/padding_small"
+            android:gravity="center"
+            android:text="@{item.favCar.carModel}"
+            tools:text="BMW" />
+
+        <TextView
+            android:id="@+id/carIdTV"
+            style="@style/MyCarsSixtTitle.Black.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/padding_small"
+            android:gravity="center"
+            android:text="@{item.favCar.carId}"
+            tools:text="WMWSW31030T222518" />
+
+    </LinearLayout>
+</layout>

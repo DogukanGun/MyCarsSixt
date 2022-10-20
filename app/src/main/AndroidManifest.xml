@@ -32,6 +32,8 @@
             android:exported="false"/>
         <activity android:name=".feature.cardetail.ui.CarDetailActivity"
             android:exported="false"/>
+        <activity android:name=".feature.profile.activity.ProfileActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

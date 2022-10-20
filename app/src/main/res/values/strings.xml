@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">MyCarsSixt</string>
 
     <string name="network_error_message_title">Network Error</string>
@@ -9,4 +9,7 @@
     <string name="cars_floatingbutton_desc">goToMap</string>
 
     <string name="carsmap_title">Cars on Map</string>
+
+    <string name="profile_name" translatable="false">Dogukan Ali Gundogan</string>
+    <string name="profile_page_title">Your Profile</string>
 </resources>

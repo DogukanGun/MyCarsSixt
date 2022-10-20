@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class FavCar(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
+    val carModel:String,
     var carId:String,
     var liked:Boolean
 )
