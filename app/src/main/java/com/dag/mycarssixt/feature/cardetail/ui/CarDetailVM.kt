@@ -57,19 +57,29 @@ class CarDetailVM @Inject constructor(
     }
 
     fun like() {
-        _favCar?.let {
-            if (it.liked) {
-                dislikeCarUseCase.observe(DislikeCarUseCase.DislikeCarUseCaseParams(it.carId))
-                it.liked = false
+        _favCar?.let { favCar->
+            if (favCar.liked) {
+                dislikeCarUseCase.observe(DislikeCarUseCase.DislikeCarUseCaseParams(favCar.carId))
+                    .publishLoading()
+                    .subscribe{
+                        it?.let {
+                            favCar.liked = false
+                            viewState.postValue(CarDetailState.CarLikeStatus(favCar))
+                        }
+                    }
             } else {
-                it.liked = true
+                favCar.liked = true
                 if (carNotExist) {
                     addFavCar()
+                    viewState.postValue(CarDetailState.CarLikeStatus(favCar))
                 } else {
-                    likeFavCarUseCase.observe(LikeCarUseCase.LikeCarUseCaseParams(it.carId))
+                    likeFavCarUseCase.observe(LikeCarUseCase.LikeCarUseCaseParams(favCar.carId))
+                        .publishLoading()
+                        .subscribe {
+                            viewState.postValue(CarDetailState.CarLikeStatus(favCar))
+                        }
                 }
             }
-            viewState.postValue(CarDetailState.CarLikeStatus(it))
         }
     }
 
